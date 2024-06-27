@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="font-textFont">
+    <nav class="flex justify-between px-20 py-7 bg-white shadow-sm shadow-gray-400 items-center">
+        <input type="text" placeholder="Search"
+            class="rounded-3xl text-sm w-[25%]  font-semibold border border-gray-400 text-gray-500 px-4 py-2">
+        <h1 class="text-2xl text-center font-header font-bold">MyBlog</h1>
+        <ul class="flex gap-4">
+            <li><i class="fa-brands fa-instagram"></i></li>
+            <li><i class="fa-brands fa-twitter"></i></li>
+            <li><i class="fa-brands fa-facebook"></i></li>
+        </ul>
+        <h2 class="text-2xl"><i class="fa-solid fa-bars"></i></h2>
+    </nav>
+    <section class="w-screen">
+        <h1 class="text-3xl font-bold font-header text-center py-10">Trending</h1>
+        <div class="flex">
+            {% for num in number %}
+            <div class="flex justify-center ">
+                <div class="flex justify-center items-center gap-12">
+                    <img src="https://preview.colorlib.com/theme/magdesign/images/post_lg_1.jpg" alt=""
+                        class="w-[35%] rounded-md">
+                    <div id="detail" class="w-[60%] h-[70vh] flex flex-col justify-center">
+                        <p class="font-bold text-black">Business , Travel <span class="text-gray-400 font-normal"> -
+                                july 2,
+                                2020</span></p>
+                        <h2 class="text-4xl leading-snug font-header my-2 font-bold">Your most unhappy Customer are your
+                            greatest source of learning</h2>
+                        <p class="text-gray-400 text-sm mb-3">Far far away, behind the word mountains, far from the
+                            countries
+                            Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
+                            right at
+                            the coast of the Semantics, a large language ocean.</p>
+                        <h3 class="flex gap-2 items-center">
+                            <img src="https://preview.colorlib.com/theme/magdesign/images/person_1.jpg" alt=""
+                                class="w-12 rounded-full">
+                            <div class="">
+                                <p class="font-bold font-header">Sergy Campbell</p>
+                                <p class="text-gray-400">CEO and Founder</p>
+                            </div>
+                        </h3>
+                    </div>
+                </div>
+                <div id="circle" class="flex justify-center gap-1">
+                    <span class="circle w-2 h-2 rounded-full bg-red-200"></span>
+                    <span class="circle w-2 h-2 rounded-full bg-red-200"></span>
+                    <span class="circle w-2 h-2 rounded-full bg-red-200"></span>
+                    <span class="circle w-2 h-2 rounded-full bg-red-200"></span>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</body>
+
+</html>
