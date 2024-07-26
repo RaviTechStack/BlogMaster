@@ -1,102 +1,106 @@
 {% extends "base.html" %}
 {% block body %}
-    <main class="w-[90vw] mx-auto  overflow-hidden">
-        <h1 class="text-3xl font-bold font-header text-center py-10">Trending</h1>
-        <div class="w-[450vw] flex transition-transform duration-300 ease-linear" id="slider">
-            {% for num in number %}
-            <a href="/blog">
+<main class="w-[90vw] mx-auto  overflow-hidden">
+    <h1 class="text-3xl font-bold font-header text-center py-10">Trending</h1>
+    <div class="w-[270vw] flex transition-transform duration-300 ease-linear" id="slider">
+        {% for blg in blog %}
+        <a href="/blog/{{blg.blog_id}}">
             <div class=" w-[90vw] flex justify-center items-center gap-12 ">
-                <img src="https://preview.colorlib.com/theme/magdesign/images/post_lg_1.jpg" alt=""
-                    class="w-[35%] rounded-md">
-                <div id="detail" class="w-[60%] h-[70vh] flex flex-col justify-center">
-                    <p class="font-bold text-black">Business , Travel <span class="text-gray-400 font-normal"> - july 2,
+                <img src="../static/media/{{blg.blog_img}}" alt="" class="rounded-md w-[30%] h-[90%]">
+                <div id="detail" class="w-[60%] h-[70vh] flex flex-col  justify-center">
+                    <p class="font-bold text-black">{{blg.blog_category}} <span class="text-gray-400 font-normal"> -
+                            july 2,
                             2020</span></p>
-                    <h2 class="text-4xl leading-snug font-header my-2 font-bold">{{num}} Your most unhappy Customer are
-                        your greatest source of learning</h2>
+                    <h2 class="text-4xl leading-snug font-header my-2 font-bold">{{blg.blog_title}}</h2>
                     <p class="text-gray-400 text-sm mb-3">Far far away, behind the word mountains, far from the
                         countries Vokalia and Consonantia, there live the blind texts. Separated they live in
                         Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                     <h3 class="flex gap-2 items-center">
-                        <img src="https://preview.colorlib.com/theme/magdesign/images/person_1.jpg" alt=""
-                            class="w-12 rounded-full">
+                        <div class="w-12 h-12 rounded-full bg-cover bg-center bg-no-repeat border border-gray-600"
+                            style="background-image: url('../static/media/{{blg.author.profile_pic}}');"></div>
                         <div class="">
-                            <p class="font-bold font-header">Sergy Campbell</p>
+                            <p class="font-bold font-header">{{blg.author.firstname}} {{blg.author.lastname}}</p>
                             <p class="text-gray-400">CEO and Founder</p>
                         </div>
                     </h3>
                 </div>
             </div>
         </a>
-            {% endfor %}
-        </div>
+        {% endfor %}
+    </div>
 
-        <div id="circle" class="flex justify-center gap-1 py-2">
-            <span class="circle w-2 h-2 rounded-full bg-red-200"></span>
-            <span class="circle w-2 h-2 rounded-full bg-red-200"></span>
-            <span class="circle w-2 h-2 rounded-full bg-red-200"></span>
-            <span class="circle w-2 h-2 rounded-full bg-red-200"></span>
-        </div>
-    </main>
-    <section id="show-blog" class="w-[90%] mx-auto grid grid-cols-3 gap-10 gap-y-12 py-10">
-        {% for num in number %}
+    <div id="circle" class="flex justify-center gap-1 py-2">
+        {% for blg in blog %}
+        <span class="circle w-2 h-2 rounded-full bg-red-200"></span>
+        {% endfor %}
+    </div>
+</main>
+<section id="show-blog" class="w-[90%] mx-auto grid grid-cols-3 gap-10 gap-y-12 py-10">
+    {% for blg in allBlog %}
+    <a href="/blog/{{blg.blog_id}}">
         <div class="card">
-            <img src="https://preview.colorlib.com/theme/magdesign/images/img_2.jpg" alt="" class="rounded-md mb-4">
-            <p class="font-bold text-black text-sm">Business , Travel <span class="text-gray-400 font-normal"> - july 2,
+            <div class="imgContain w-full h-80 bg-slate-500 bg-center bg-cover bg-no-repeat rounded-md mb-4"
+                style="background-image: url('../static/media/{{blg.blog_img}}');"></div>
+            <!-- <img src="" alt="" class="rounded-md mb-4"> -->
+            <p class="font-bold text-black text-sm">{{blg.blog_category}} <span class="text-gray-400 font-normal"> -
+                    july 2,
                     2020</span></p>
-            <h2 class="text-lg leading-snug font-header my-2 font-bold">{{num}} Your most unhappy Customer are your
-                greatest source of learning</h2>
-            <p class="text-gray-400 text-sm mb-3">Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts.</p>
+            <h2 class="text-lg leading-snug font-header my-2 font-bold">{{blg.blog_title[:40]}}{% if
+                blg.blog_title|length > 40 %}...{% endif %}</h2>
+            <p class="min-h-12 text-gray-400 text-sm mb-3">{{blg.blog_content[:100]}}{% if blg.blog_content|length > 100
+                %}...{% endif %}</p>
             <h3 class="flex gap-2 items-center my-3">
-                <img src="https://preview.colorlib.com/theme/magdesign/images/person_1.jpg" alt=""
-                    class="w-10 rounded-full">
+                <div class="w-12 h-12 rounded-full bg-cover bg-center bg-no-repeat border border-gray-600"
+                    style="background-image: url('../static/media/{{blg.author.profile_pic}}');"></div>
                 <div class="">
-                    <p class="font-bold font-header text-sm">Sergy Campbell</p>
+                    <p class="font-bold font-header text-sm">{{blg.author.firstname}} {{blg.author.lastname}}</p>
                     <p class="text-gray-400 text-sm">CEO and Founder</p>
                 </div>
             </h3>
         </div>
-        {% endfor %}
-    </section>
+    </a>
+    {% endfor %}
+</section>
 
-    <section class="popular w-full overflow-x-hidden">
-        <h2 class="text-center text-4xl py-20 font-bold font-header">Most Popular Post</h2>
-        <div class="w-[360vw] flex transition-transform duration-300 ease-linear" id="slider2">
-            <div id="slider2" class="w-[350vw] flex mx-auto">
-                {% for num in number %}
+<section class="popular w-full overflow-x-hidden">
+    <h2 class="text-center text-4xl py-20 font-bold font-header">Some Random Post</h2>
+    <div class="w-[220vw] flex transition-transform duration-300 ease-linear" id="slider2">
+        <div id="slider3" class="w-[210vw] flex mx-auto">
+            {% for blg in random %}
+            <a href="/blog/{{blg.blog_id}}">
                 <div class=" w-[70vw] flex flex-col items-center gap-2">
-                    <img src="https://preview.colorlib.com/theme/magdesign/images/img_7.jpg" alt=""
-                        class="w-[74%] rounded-md">
+                    <img src="../static/media/{{blg.blog_img}}" alt="" class="w-[74%] h-[75vh] rounded-md">
                     <div id="detail" class="w-[77%] flex flex-col items-start justify-center">
-                        <p class="font-bold text-black text-sm">Business , Travel <span
+                        <p class="font-bold text-black text-sm">{{blg.blog_category}} <span
                                 class="text-gray-400 font-normal"> - july 2, 2020</span></p>
-                        <h2 class="text-lg leading-snug font-header my-2 font-bold">{{num}} Your most unhappy Customer
-                            are your greatest source of learning</h2>
-                        <p class="text-gray-400 text-sm mb-3">Far far away, behind the word mountains, far from the
-                            countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <h2 class="text-lg leading-snug font-header my-2 font-bold">{{blg.blog_title[:40]}}{% if
+                            blg.blog_title|length > 40 %}...{% endif %}</h2>
+                        <p class="text-gray-400 text-sm mb-3">{{blg.blog_content[:100]}}{% if blg.blog_content|length >
+                            100 %}...{% endif %}</p>
                         <h3 class="flex gap-2 items-center">
-                            <img src="https://preview.colorlib.com/theme/magdesign/images/person_1.jpg" alt=""
-                                class="w-10 rounded-full">
+                            <div class="w-12 h-12 rounded-full bg-cover bg-center bg-no-repeat border border-gray-600"
+                                style="background-image: url('../static/media/{{blg.author.profile_pic}}');"></div>
                             <div class="">
-                                <p class="font-bold font-header text-sm">Sergy Campbell</p>
+                                <p class="font-bold font-header text-sm">{{blg.author.firstname}}
+                                    {{blg.author.lastname}}</p>
                                 <p class="text-gray-400 text-sm">CEO and Founder</p>
                             </div>
                         </h3>
                     </div>
                 </div>
-                {% endfor %}
-
-            </div>
+            </a>
+            {% endfor %}
 
         </div>
-        <div id="circle2" class="flex justify-center gap-3 py-4">
-            <span class="circles w-2 h-2 rounded-full bg-red-200"></span>
-            <span class="circles w-2 h-2 rounded-full bg-red-200"></span>
-            <span class="circles w-2 h-2 rounded-full bg-red-200"></span>
-            <span class="circles w-2 h-2 rounded-full bg-red-200"></span>
-        </div>
-    </section>
-    <section class="grid grid-cols-2 gap-20 w-[90%] mx-auto mb-12">
+
+    </div>
+    <div id="circle2" class="flex justify-center gap-3 py-4">
+        {% for blg in random %}
+        <span class="circles w-2 h-2 rounded-full bg-red-200"></span>
+        {% endfor %}
+    </div>
+</section>
+<!-- <section class="grid grid-cols-2 gap-20 w-[90%] mx-auto mb-12">
         <div class="left">
             <h2 class="text-xl font-bold font-header py-4 pt-16">Sports</h2>
             <div class="show-blog grid gap-3 grid-rows-5 gap-y-10">
@@ -149,7 +153,6 @@
                 {% endfor %}
             </div>
         </div>
-    </section>
+    </section> -->
 
-    {% endblock %}
-    
+{% endblock %}

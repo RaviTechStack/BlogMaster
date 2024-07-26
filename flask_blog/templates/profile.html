@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block body %}
-    <section class="cover-pic bg-coverImg bg-cover relative bg-center bg-no-repeat h-[50vh]">
+    <section class="cover-pic  bg-cover relative bg-center bg-slate-50 bg-no-repeat h-[50vh]" style="background-image: url('../static/media/{{user.cover_pic}}');">
     </section>
 
     <section class="profile-detail py-6">
         <div class="w-4/5 mx-auto flex gap-10">
-            <div class="h-[220px] w-[220px] mt-[-120px]  z-30 rounded-full bg-profileImg bg-cover bg-center bg-no-repeat"></div>
+            <div class="h-[220px] w-[220px] mt-[-120px]  z-30 rounded-full bg-cover bg-center bg-no-repeat" style="background-image: url('../static/media/{{user.profile_pic}}');"></div>
             <div class="bio">
-                <h2 class="text-3xl font-header font-semibold">Ravi Singh</h2>
-                <p class="text-gray-400 text-xl">@ravisingh@123</p>
+                <h2 class="text-3xl font-header font-semibold">{{user.firstname}} {{user.lastname}}</h2>
+                <p class="text-gray-400 text-xl">{{user.username}}</p>
                 <div class="social-link flex gap-4 my-2">
                     <p class="text-gray-500 flex gap-1 items-center"><i class="fa-brands fa-instagram"></i> ingramuser</p>
                     <p class="text-gray-500 flex gap-1 items-center"><i class="fa-brands fa-facebook"></i> ingramuser</p>
@@ -22,8 +22,8 @@
     <section class="profileBlog pt-10 pb-2 bg-gray-100">
         <div class="showBlog w-4/5 mx-auto flex gap-4">
             <div class="bio w-fit  py-4 px-8 flex flex-col gap-2">
-                <p class="text-gray-500 flex gap-1 items-center"><i class="fa-solid fa-phone mx-2"></i> 9987148020</p>
-                <p class="text-gray-500 flex gap-1 items-center"><i class="fa-solid fa-envelope mx-2"></i> ravisinghd98@gmail.com</p>
+                <p class="text-gray-500 flex gap-1 items-center"><i class="fa-solid fa-phone mx-2"></i> {{user.phone}}</p>
+                <p class="text-gray-500 flex gap-1 items-center"><i class="fa-solid fa-envelope mx-2"></i> {{user.email}}</p>
                 <div class="rating flex items-center mt-4 gap-2">
                     <h2 class="text-2xl mx-1">4.5</h2>
                     <div class="stars ">
@@ -39,16 +39,20 @@
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-3">
-                {% for num in number %}
+                {% for blg in postBlog %}
                 <div class="blogCard">
-                    <div class="h-[35vh] bg-slate-500 rounded-md">
-                        <img src="https://preview.colorlib.com/theme/magdesign/images/post_lg_1.jpg" alt="" class="rounded-md h-full w-full">
-                    </div>
+                    <a href="/blog/{{blg.blog_id}}">
+                    <div class="imgContain w-full h-60 bg-slate-500 bg-center bg-cover bg-no-repeat rounded-md mb-4" style="background-image: url('../static/media/{{blg.blog_img}}');"></div>
                     <div class="detail bg-white py-2 pt-4 px-3">
-                        <h2 class="text-xl font-semibold font-header">Your most unhappy Customer are your greatest source of learning</h2>
-                        <p class=" text-sm text-gray-400 leading-snug my-1 mb-2">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
-                        <button class="py-2 px-4 bg-orange-400 rounded-md text-white font-bold font-header">Read More</button>
+                        <h2 class="text-xl font-semibold font-header">{{blg.blog_title[:33]}}{% if blg.blog_title|length > 33 %}...{% endif %}</h2>
+                        <p class="min-h-12 text-sm text-gray-400 leading-snug my-1 mb-2">{{blg.blog_content[:100]}}{% if blg.blog_content|length > 100 %}...{% endif %}</p></a>
+                        {% if user.id == current_user.id %}
+                        <a href="update/{{blg.blog_id}}"><button class="py-2 px-4 text-sm bg-yellow-600 rounded-md text-white font-bold font-header">Update</button></a>
+                        <a href="delete/{{blg.blog_id}}"><button class="py-2 px-4 text-sm bg-red-600 rounded-md text-white font-bold font-header">Delete</button></a>
+                        {% else %}
+                        <a href="blog/{{blg.blog_id}}"><button class="py-2 px-4 bg-[#7747ff] rounded-md text-white font-bold font-header">Read More</button></a>
                         <button class="p-2 bg-gray-200 rounded-full mx-2"><i class="fa-solid fa-bookmark"></i></button>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}

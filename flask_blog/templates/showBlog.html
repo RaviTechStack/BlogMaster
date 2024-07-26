@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="flex flex-col items-center justify-center py-12">
+    <a href="/profile/{{blog.author.id}}">
+    <div class="w-24 h-24 rounded-full  mx-auto bg-cover bg-center bg-no-repeat border border-gray-600" style="background-image: url('../static/media/{{blog.author.profile_pic}}');"></div>
+    <p class="text-gray-400 font-semibold font-header mt-2">{{blog.author.firstname}} {{blog.author.lastname}}</p>
+    <p class="text-gray-400">july 2, 2024</p>
+</a>
+</section>
+
+<section class="blog w-3/5 mx-auto">
+    <h2 class="text-4xl text-center font-bold my-2 font-header leading-snug">{{blog.blog_title}}</h2>
+    <p class="text-gray-400 text-lg text-center w-[90%] mb-2">{{blog.blog_content[:100]}}</p>
+    
+    <img src="../static/media/{{blog.blog_img}}" alt="" class="w-full rounded-md my-2">
+    <p class="text-gray-400 my-2 text-lg">{{blog.blog_content | nl2br | safe}}</p>
+    {% if blog.blog_highlights %}
+    <div class="highlights pl-10 border-l border-blue-900 my-3">
+        <p class="text-gray-400 font-header font-semibold text-lg">{{blog.blog_highlights}}</p>
+    </div>
+    {% endif %}
+    
+    <hr class="mt-5 font-bold text-gray-700">
+</section>
+<div class="share py-8 w-3/5 mx-auto">
+    <p class="text-gray-400 font-bold font-header">Share</p>
+    <ul class="social-icon flex gap-4 py-3">
+        <li class="text-lg"><i class="fa-brands fa-instagram"></i></li>
+        <li class="text-lg"><i class="fa-brands fa-twitter"></i></li>
+        <li class="text-lg"><i class="fa-brands fa-facebook"></i></li>
+        <li class="text-lg"><i class="fa-brands fa-pinterest"></i></li>
+    </ul>
+</div>
+<section class="related w-4/5 mx-auto">
+    <h2 class="py-9 text-3xl font-bold font-header">You May Also Like</h2>
+    <div class="relatedBlog flex flex-col gap-10">
+        {% for blg in related %}
+        <div class="singleBlog flex gap-7 items-center">
+            <div class="imgContain w-1/5 h-52 bg-slate-500 bg-center bg-cover bg-no-repeat rounded-md mb-4" style="background-image: url('../static/media/{{blg.blog_img}}');"></div>
+            <div id="detail" class="flex flex-col items-start justify-center">
+                <p class="font-bold text-black text-sm">Business , Travel <span
+                        class="text-gray-400 font-normal"> - july 2, 2020</span></p>
+                <h2 class="text-xl leading-snug font-header my-2 font-bold">{{num}} Your most unhappy Customer
+                    are your greatest source of learning</h2>
+                    <p class="text-gray-400 text-sm mb-3">Far far away, behind the word mountains, far from the
+                        countries Vokalia and Consonantia, there live the blind texts.</p>
+                <h3 class="flex gap-2 items-center">
+                    <img src="https://preview.colorlib.com/theme/magdesign/images/person_1.jpg" alt=""
+                        class="w-10 rounded-full">
+                    <div class="">
+                        <p class="font-bold font-header text-sm">Sergy Campbell</p>
+                        <p class="text-gray-400 text-sm">CEO and Founder</p>
+                    </div>
+                </h3>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+</section>
+
+{% endblock %}

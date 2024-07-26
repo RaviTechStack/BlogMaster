@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="flex flex-col items-center justify-center h-[90vh] bg-gray-100">
+    <div class="w-full max-w-lg bg-white rounded-lg shadow-md shadow-black p-6">
+      <h2 class="text-2xl font-bold  mb-6">Upload Your Blog</h2>
+  
+      <form class="flex flex-col" action="" enctype="multipart/form-data" method="post">
+        <input name="title" value="{{blog.blog_title}}" placeholder="Blog Title" class="bg-gray-100 text-gray-700 border border-gray-100  rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" type="text">
+        <textarea name="content"  rows="6" placeholder="Blog Content" class="bg-gray-100 text-gray-700  rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" name="cover_letter">{{blog.blog_content}}</textarea>
+        <textarea name="highlight"  rows="3" placeholder="Any highlights of blog (if any)" class="bg-gray-100 text-gray-700  rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" name="cover_letter">{{blog.blog_highlights}}</textarea>
+        <input name="category" value="{{blog.blog_category}}"  placeholder="category" class="bg-gray-100 text-gray-700 border border-gray-100  rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" type="text">
+        <input name="blogPic" placeholder="Blog Image" class="bg-gray-100 text-gray-700  rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" type="file">
+  
+        <button class="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150" type="submit">Upload</button>
+      </form>
+    </div>
+  </div>
+  {% endblock %}

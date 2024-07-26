@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="flex flex-col items-center justify-center h-[90vh] bg-gray-100">
+  <div class="w-full max-w-md bg-white rounded-lg shadow-md shadow-gray-600 p-6">
+    <div class="text-2xl font-bold mb-4 text-[#1e0e4b] text-center">Welcome to <span
+        class="text-[#7747ff]">MyBlog</span></div>
+    <form class="flex flex-col" action="/signup" method="post" enctype="multipart/form-data">
+      <div class="flex space-x-4 mb-4">
+        <input placeholder="First Name"
+          class="bg-gray-100 text-gray-500 border-0 rounded-md p-2 w-1/2 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          type="text" name="firstname"/>
+        <input placeholder="Last Name"
+          class="bg-gray-100 text-gray-500 border-0 rounded-md p-2 w-1/2 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          type="text" name="lastname"/>
+      </div>
+      <div class="flex space-x-4 mb-4">
+        <input placeholder="Email"
+          class="bg-gray-100 text-gray-500 border-0 rounded-md p-2 w-1/2 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          type="text" name="email"/>
+        <input placeholder="Phone"
+          class="bg-gray-100 text-gray-500 border-0 rounded-md p-2 w-1/2 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          type="number" name="phone"/>
+      </div>
+      <input placeholder="Username"
+        class="bg-gray-100 text-gray-500 border-0 rounded-md p-2 mb-4 focus:bg-gray-620 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+        type="email" name="username"/>
+
+      <div class="flex space-x-4 mb-4">
+        <input placeholder="Password"
+          class="bg-gray-100 text-gray-500 border-0 rounded-md p-2 w-1/2 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          type="text" />
+        <input placeholder="Confirm Password"
+          class="bg-gray-100 text-gray-500 border-0 rounded-md p-2 w-1/2 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+          type="text" name="password"/>
+      </div>
+
+      <label class="text-sm ml-1 mb-2 text-gray-400 font-semibold cursor-pointer" for="picture">
+        Profile pic
+      </label>
+      <div class="grid w-full max-w-xs items-center gap-1.5">
+        <input id="picture" type="file" name="profilepic"
+          class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
+      </div>
+
+      <label class="text-sm ml-1 my-2 text-gray-400 font-semibold cursor-pointer" for="picture">
+        Cover pic
+      </label>
+      <div class="grid w-full max-w-xs items-center gap-1.5">
+        <input id="picture" type="file" name="coverpic"
+          class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
+      </div>
+
+      <button type="submit" class="bg-[#7747ff] w-max m-auto px-6 mt-3 py-2 rounded text-white text-sm font-normal">Sign
+        Up</button>
+      <div class="text-sm text-center mt-[1.6rem]">Already have an account ? <a class="text-sm text-[#7747ff]"
+          href="login">login!</a></div>
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}
